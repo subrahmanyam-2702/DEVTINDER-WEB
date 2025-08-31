@@ -9,6 +9,7 @@ const Login=()=>
 {
     const [emailId,setEmailId]=useState("subbu@gmail.com");
     const [password,setPassword]=useState("Subbu@076");
+    const [error,setError]=useState("");
    const dispatch=useDispatch();
    const navigate=useNavigate();
     const handleLogin=async ()=>
@@ -26,6 +27,7 @@ const Login=()=>
         }
         catch(err)
         {
+            setError(err?.response?.data || "Something went wrong");
             console.error(err);
         }
     }
@@ -54,6 +56,7 @@ const Login=()=>
                             onChange={(e)=>setPassword(e.target.value)}
                         />
                     </fieldset>
+                     <p className="text-red-500">{error}</p>
                     <div className="card-actions justify-end my-2">
                         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>
