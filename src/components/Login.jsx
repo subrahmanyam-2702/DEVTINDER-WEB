@@ -21,7 +21,7 @@ const Login=()=>
                     emailId,
                     password
                 },{withCredentials:true});
-        dispatch(addUser(res.data));
+        dispatch(addUser(res.data.user));
         return navigate("/");
         }
         catch(err)
