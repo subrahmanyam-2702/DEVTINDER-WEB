@@ -25,7 +25,7 @@ const Connections=()=>
         fetchconnections();
     },[]);
     if(!connections) return;
-    if(connections.length===0) return <h1 className="font-bold text-2xl">No Connections found</h1>
+    if(connections.length===0) return <h1 className="font-bold text-2xl text-center my-20">No Connections found</h1>
   return (
       <div className="bg-base-100 min-h-screen pb-24 pt-10">
         <div className="flex justify-center mb-8">

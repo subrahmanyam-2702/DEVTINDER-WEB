@@ -1,13 +1,30 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests, removeRequest } from "../utils/requestSlice";
 
 const Requests=()=>
 {
     const requests=useSelector((store)=>store.requests);
     const dispatch=useDispatch();
+    const [flag,setFlag]=useState(true);
+    const reviewRequest=async (status,_id)=>
+    {
+        try{
+
+            const res=await axios.post(
+                BASE_URL+"/request/review/"+status+"/"+_id,
+                {},{
+                    withCredentials:true
+                });
+            dispatch(removeRequest(_id));
+            console.log(res);
+        }catch(err)
+        {
+            console.error("status is invalid");
+        }
+    }
     const fetchRequests=async ()=>
     {
        try{
@@ -25,7 +42,7 @@ const Requests=()=>
        fetchRequests();
     },[])
      if(!requests) return;
-    if(requests.length===0) return <h1 className="font-bold text-2xl">No Requests found</h1>
+    if(requests.length===0) return <h1 className="text-center my-20 font-bold text-2xl">No Requests found</h1>
     return (
          <div className="bg-base-100 min-h-screen pb-24 pt-10">
     <div className="flex justify-center mb-8">
@@ -33,10 +50,10 @@ const Requests=()=>
     </div>
     <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
       {requests.map((request, index) => {
-        const { firstName, lastName, age, gender, about, skills, photourl } = request.fromUserId;
+        const {_id,firstName, lastName, age, gender, about, skills, photourl } = request.fromUserId;
 
         return (
-          <div
+        (<div
             key={index}
             className="bg-base-300 border border-base-200 shadow-md rounded-2xl p-5 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
           >
@@ -66,11 +83,11 @@ const Requests=()=>
                 ))}
             </div>
             <div className="card-actions justify-center py-4">
-                    <button className="btn btn-error mx-2">Reject</button>
-                    <button className="btn btn-success">Accept</button>
+                    <button className="btn btn-error mx-2" onClick={()=>reviewRequest("rejected",request._id)}>Reject</button>
+                    <button className="btn btn-success" onClick={()=>reviewRequest("accepted",request._id)}>Accept</button>
             </div>
           </div>
-        );
+      ));
       })}
     </div>
   </div>

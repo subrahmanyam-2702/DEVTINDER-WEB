@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Login=()=>
 {
@@ -61,6 +62,7 @@ const Login=()=>
                         />
                     </fieldset>
                      <p className="text-red-500">{error}</p>
+                    <p>If password forgotted click <Link to="/forgotpassword" className="text-blue-400">Forgot password</Link></p>
                     <div className="card-actions justify-end my-2">
                         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>

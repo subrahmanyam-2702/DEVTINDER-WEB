@@ -1,42 +1,3 @@
-/*
-import axios from "axios";
-import { BASE_URL } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
-import { addFeed } from "../utils/feedSlice";
-import { useEffect } from "react";
-import UserCard from "./UserCard";
-
-const Feed=()=>
-{
-    const feed=useSelector((store)=>store.feed);
-    console.log(feed);
-    const dispatch=useDispatch();
-    const getFeed=async ()=>
-    {
-       if(feed)return;
-       try{   
-          const res=await axios.get(BASE_URL+"/user/feed",{withCredentials:true});
-          dispatch(addFeed(res.data));
-       }
-       catch(err)
-       {
-          console.error(err);
-       }
-    }
-    useEffect(()=>{
-        getFeed();
-    },[]);
-     if(!feed || feed.length === 0) return <p>No users available</p>;
-    return (
-         <div className="flex justify-center my-15">
-            <UserCard user={feed[0]}/>
-         </div>
-    )
-}
-
-export default Feed;
-*/
-// Feed.jsx
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,7 +32,7 @@ const Feed = () => {
           <p className="mt-4 text-lg font-semibold text-gray-700">Loading users...</p>
       </div>
     );
-  if (!feed || feed.length === 0) return <p>No users available</p>;
+  if (!feed || feed.length === 0) return <p className="text-center my-20 font-bold">No users available</p>;
 
   return (
     <div className="flex justify-center my-15">
