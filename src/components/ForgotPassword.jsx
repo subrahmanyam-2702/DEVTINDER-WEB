@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { VITE_BASE_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {
@@ -15,7 +15,7 @@ export default function ForgotPassword() {
     setMessage("");
 
     try {
-      const res = await axios.patch(BASE_URL+"/profile/forgotpassword", {
+      const res = await axios.patch(import.meta.env.VITE_BASE_URL+"/profile/forgotpassword", {
         emailId,
         newPassword,
       },{withCredentials:true});

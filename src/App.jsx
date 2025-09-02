@@ -8,6 +8,7 @@ import Feed from "./components/Feed"
 import Connections from "./components/Connections"
 import Requests from "./components/Requests"
 import ForgotPassword from "./components/ForgotPassword"
+import Signup from "./components/Signup"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/connections" element={<Connections/>}></Route>
               <Route path="/requests" element={<Requests/>}></Route>   
               <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>   
+              <Route path="/signup" element={<Signup/>}></Route>   
           </Route>
         </Routes>
      </BrowserRouter>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { VITE_BASE_URL } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequest } from "../utils/requestSlice";
@@ -14,7 +14,7 @@ const Requests=()=>
         try{
 
             const res=await axios.post(
-                BASE_URL+"/request/review/"+status+"/"+_id,
+                VITE_BASE_URL+"/request/review/"+status+"/"+_id,
                 {},{
                     withCredentials:true
                 });
@@ -28,7 +28,7 @@ const Requests=()=>
     const fetchRequests=async ()=>
     {
        try{
-         const res=await axios.get(BASE_URL+"/user/requests/received",{
+         const res=await axios.get(import.meta.env.VITE_BASE_URL+"/user/requests/received",{
             withCredentials:true
         });
        dispatch(addRequests(res.data.data));
