@@ -23,6 +23,10 @@ const Login=()=>
                     password
                 },{withCredentials:true});
         dispatch(addUser(res.data.user));
+        const profileRes = await axios.get(BASE_URL + "/profile/view", {
+            withCredentials: true,
+        });
+      dispatch(addUser(profileRes.data));
         return navigate("/");
         }
         catch(err)

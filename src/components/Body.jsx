@@ -34,7 +34,7 @@ const Body=()=>{
         fetchUSer();
     },[]);
     return (
-        <div>
+        <div className="bg-base-100">
             <NavBar/>
             <Outlet/>
             <Footer/>
