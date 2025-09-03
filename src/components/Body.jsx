@@ -17,7 +17,7 @@ const Body=()=>{
        if(user) return;   
        try{
             const res=await axios.get(import.meta.env.VITE_BASE_URL+"/profile/view",{
-                withCredentials:true
+                withCredentials: true
             });
             dispatch(addUser(res.data));
        }

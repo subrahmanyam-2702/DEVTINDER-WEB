@@ -29,7 +29,7 @@ const Requests=()=>
     {
        try{
          const res=await axios.get(import.meta.env.VITE_BASE_URL+"/user/requests/received",{
-            withCredentials:true
+            withCredentials: true
         });
        dispatch(addRequests(res.data.data));
        }catch(err)

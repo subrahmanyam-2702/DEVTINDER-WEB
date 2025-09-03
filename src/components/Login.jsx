@@ -24,10 +24,11 @@ const Login=()=>
                     password
                 },{withCredentials:true});
         dispatch(addUser(res.data.user));
-        const profileRes = await axios.get(import.meta.env.VITE_BASE_URL + "/profile/view", {
-            withCredentials: true,
-        });
-      dispatch(addUser(profileRes.data));
+        
+    //     const profileRes = await axios.get(import.meta.env.VITE_BASE_URL + "/profile/view", {
+    //         withCredentials: true,
+    //     });
+    //   dispatch(addUser(profileRes.data));
         return navigate("/");
         }
         catch(err)
